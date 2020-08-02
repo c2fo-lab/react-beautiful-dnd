@@ -60,7 +60,7 @@ export default ({ state, type }: Args): ?PublicResult => {
   const { draggables, droppables } = state.dimensions;
 
   return isMovingOnMainAxis
-    ? moveToNextPlace({
+    ? (moveToNextPlace({
         isMovingForward,
         previousPageBorderBoxCenter,
         draggable,
@@ -70,8 +70,19 @@ export default ({ state, type }: Args): ?PublicResult => {
         previousClientSelection: state.current.client.selection,
         previousImpact: state.impact,
         afterCritical: state.afterCritical,
-      })
+      }) || moveCrossAxis({
+        isMovingOnMainAxis,
+        isMovingForward,
+        previousPageBorderBoxCenter,
+        draggable,
+        isOver,
+        draggables,
+        droppables,
+        viewport: state.viewport,
+        afterCritical: state.afterCritical,
+      }))
     : moveCrossAxis({
+        isMovingOnMainAxis,
         isMovingForward,
         previousPageBorderBoxCenter,
         draggable,

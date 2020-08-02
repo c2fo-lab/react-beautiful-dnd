@@ -19,6 +19,7 @@ import getPageBorderBoxCenter from '../../get-center-from-impact/get-page-border
 import moveToNewDroppable from './move-to-new-droppable';
 
 type Args = {|
+  isMovingOnMainAxis: boolean,
   isMovingForward: boolean,
   // the current page center of the dragging item
   previousPageBorderBoxCenter: Position,
@@ -35,6 +36,7 @@ type Args = {|
 |};
 
 export default ({
+  isMovingOnMainAxis,
   isMovingForward,
   previousPageBorderBoxCenter,
   draggable,
@@ -47,6 +49,7 @@ export default ({
   // not considering the container scroll changes as container scrolling cancels a keyboard drag
 
   const destination: ?DroppableDimension = getBestCrossAxisDroppable({
+    isMovingOnMainAxis,
     isMovingForward,
     pageBorderBoxCenter: previousPageBorderBoxCenter,
     source: isOver,
