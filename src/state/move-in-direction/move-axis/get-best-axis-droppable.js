@@ -14,7 +14,7 @@ import type {
 } from '../../../types';
 
 type GetBestDroppableArgs = {|
-  isMovingOnMainAxis: boolean,
+  isMovingOnMainAxis: ?boolean,
   isMovingForward: boolean,
   // the current position of the dragging item
   pageBorderBoxCenter: Position,
